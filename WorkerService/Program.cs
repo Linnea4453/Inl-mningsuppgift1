@@ -17,7 +17,7 @@ namespace WorkerService
             .MinimumLevel.Debug()
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
             .Enrich.FromLogContext()
-            .WriteTo.File(@":c\workerservice\log\LogFile.txt")
+            .WriteTo.File(@"c:\users\linne\Workerservice\LogFile.txt") 
             .CreateLogger();
 
             try
@@ -40,6 +40,7 @@ namespace WorkerService
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
             .UseSerilog()
+            .UseWindowsService()
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddHostedService<Worker>();
